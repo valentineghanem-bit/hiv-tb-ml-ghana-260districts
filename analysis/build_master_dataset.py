@@ -100,7 +100,7 @@ def extract_by_indicator(df, indicator_contains, value_col='Value'):
  mask = df['Indicator'].str.contains(indicator_contains, case=False, na=False)
  sub = df[mask & (df['IsTotal'] == 1) & (df['IsPreferred'] == 1)].copy()
  if sub.empty:
- sub = df[mask].copy()
+  sub = df[mask].copy()
  grp = sub.groupby('Location')[value_col].mean().reset_index()
  return grp
 
