@@ -128,23 +128,23 @@ skf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
 for name, model in models.items():
  # Skip heavy stacked for CV (only test on held-out set)
  if name == 'Stacked Ensemble':
- continue
- auc_scores = cross_val_score(model, X_train_sm, y_train_sm,
- cv=skf, scoring='roc_auc', n_jobs=1)
- f1_scores = cross_val_score(model, X_train_sm, y_train_sm,
- cv=skf, scoring='f1', n_jobs=1)
- acc_scores = cross_val_score(model, X_train_sm, y_train_sm,
- cv=skf, scoring='accuracy', n_jobs=1)
- cv_results.append({
- 'Model': name,
- 'AUC_mean': round(auc_scores.mean(), 4),
- 'AUC_SD': round(auc_scores.std(), 4),
- 'F1_mean': round(f1_scores.mean(), 4),
- 'F1_SD': round(f1_scores.std(), 4),
- 'Accuracy_mean': round(acc_scores.mean(), 4),
- })
- print(f' {name}: AUC={auc_scores.mean():.3f}±{auc_scores.std():.3f}, '
- f'F1={f1_scores.mean():.3f}')
+  continue
+  auc_scores = cross_val_score(model, X_train_sm, y_train_sm,
+  cv=skf, scoring='roc_auc', n_jobs=1)
+  f1_scores = cross_val_score(model, X_train_sm, y_train_sm,
+  cv=skf, scoring='f1', n_jobs=1)
+  acc_scores = cross_val_score(model, X_train_sm, y_train_sm,
+  cv=skf, scoring='accuracy', n_jobs=1)
+  cv_results.append({
+  'Model': name,
+  'AUC_mean': round(auc_scores.mean(), 4),
+  'AUC_SD': round(auc_scores.std(), 4),
+  'F1_mean': round(f1_scores.mean(), 4),
+  'F1_SD': round(f1_scores.std(), 4),
+  'Accuracy_mean': round(acc_scores.mean(), 4),
+  })
+  print(f' {name}: AUC={auc_scores.mean():.3f}±{auc_scores.std():.3f}, '
+  f'F1={f1_scores.mean():.3f}')
 
 cv_df = pd.DataFrame(cv_results)
 cv_df.to_csv(TAB / 'ml_10fold_cv_results.csv', index=False)
@@ -162,24 +162,24 @@ for region in unique_regions:
  mask_train = regions != region
  mask_test = regions == region
  if mask_train.sum() < 10 or mask_test.sum() < 3:
- continue
- if y.values[mask_test].sum() == 0 or y.values[mask_train].sum() == 0:
- continue
- Xtr, Xte = X_scaled.values[mask_train], X_scaled.values[mask_test]
- ytr, yte = y.values[mask_train], y.values[mask_test]
- if len(np.unique(yte)) < 2:
- continue
+  continue
+  if y.values[mask_test].sum() == 0 or y.values[mask_train].sum() == 0:
+   continue
+   Xtr, Xte = X_scaled.values[mask_train], X_scaled.values[mask_test]
+   ytr, yte = y.values[mask_train], y.values[mask_test]
+   if len(np.unique(yte)) < 2:
+    continue
  # Skip SMOTE in spatial CV to speed up
- for name, model in models.items():
- if name == 'Stacked Ensemble':
- continue # too slow for LOROC
- try:
- m = clone(model)
- m.fit(Xtr, ytr)
- auc = roc_auc_score(yte, m.predict_proba(Xte)[:, 1])
- spatial_cv_auc[name].append(auc)
- except Exception:
- continue
+    for name, model in models.items():
+     if name == 'Stacked Ensemble':
+      continue # too slow for LOROC
+     try:
+      m = clone(model)
+      m.fit(Xtr, ytr)
+      auc = roc_auc_score(yte, m.predict_proba(Xte)[:, 1])
+      spatial_cv_auc[name].append(auc)
+     except Exception:
+      continue
 
 spatial_cv = pd.DataFrame({
  'Model': list(spatial_cv_auc.keys()),

@@ -204,19 +204,19 @@ try:
 
  # Store local coefficients
  for i, var in enumerate(gwr_predictors):
- gdf[f'GWR_coef_{var}'] = gwr_res.params[:, i + 1]
- gdf['GWR_local_R2'] = gwr_res.localR2
+  gdf[f'GWR_coef_{var}'] = gwr_res.params[:, i + 1]
+  gdf['GWR_local_R2'] = gwr_res.localR2
 
  # Save GWR summary
- gwr_summary = pd.DataFrame({
- 'Variable': ['Intercept'] + gwr_predictors,
- 'Mean_Coef': gwr_res.params.mean(axis=0),
- 'Min_Coef': gwr_res.params.min(axis=0),
- 'Max_Coef': gwr_res.params.max(axis=0),
- 'SD_Coef': gwr_res.params.std(axis=0),
- })
- gwr_summary.to_csv(TAB / 'gwr_summary.csv', index=False)
- print(gwr_summary.to_string(index=False))
+  gwr_summary = pd.DataFrame({
+  'Variable': ['Intercept'] + gwr_predictors,
+  'Mean_Coef': gwr_res.params.mean(axis=0),
+  'Min_Coef': gwr_res.params.min(axis=0),
+  'Max_Coef': gwr_res.params.max(axis=0),
+  'SD_Coef': gwr_res.params.std(axis=0),
+  })
+  gwr_summary.to_csv(TAB / 'gwr_summary.csv', index=False)
+  print(gwr_summary.to_string(index=False))
 except Exception as e:
  print(f'GWR error: {e}')
 

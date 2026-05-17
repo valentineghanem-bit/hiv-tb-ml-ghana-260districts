@@ -168,20 +168,20 @@ def make_lisa(region):
  dff['color'] = dff['LISA_cluster'].map(cmap)
  fig = go.Figure()
  for cl, c in cmap.items():
- sub = dff[dff['LISA_cluster'] == cl]
- if len(sub) == 0: continue
- fig.add_trace(go.Choropleth(
- geojson=geojson, locations=sub['DISTRICT'],
- featureidkey='properties.DISTRICT',
- z=[1] * len(sub), colorscale=[[0, c], [1, c]],
- showscale=False, name=f'{cl} (n={len(sub)})',
- showlegend=True,
- hovertemplate='<b>%{location}</b><br>' + cl + '<extra></extra>',
- ))
- fig.update_geos(fitbounds='locations', visible=False)
- fig.update_layout(margin=dict(l=0, r=80, t=10, b=0), height=520,
- legend=dict(x=1.02, y=0.5, font=dict(size=9)))
- return fig
+  sub = dff[dff['LISA_cluster'] == cl]
+  if len(sub) == 0: continue
+  fig.add_trace(go.Choropleth(
+  geojson=geojson, locations=sub['DISTRICT'],
+  featureidkey='properties.DISTRICT',
+  z=[1] * len(sub), colorscale=[[0, c], [1, c]],
+  showscale=False, name=f'{cl} (n={len(sub)})',
+  showlegend=True,
+  hovertemplate='<b>%{location}</b><br>' + cl + '<extra></extra>',
+  ))
+  fig.update_geos(fitbounds='locations', visible=False)
+  fig.update_layout(margin=dict(l=0, r=80, t=10, b=0), height=520,
+  legend=dict(x=1.02, y=0.5, font=dict(size=9)))
+  return fig
 
 
 @app.callback(Output('bv-map', 'figure'), Input('region-select', 'value'))
@@ -192,20 +192,20 @@ def make_bv(region):
  'Not Significant': '#f0f0f0'}
  fig = go.Figure()
  for cl, c in cmap.items():
- sub = dff[dff['BvLISA_cluster'] == cl]
- if len(sub) == 0: continue
- fig.add_trace(go.Choropleth(
- geojson=geojson, locations=sub['DISTRICT'],
- featureidkey='properties.DISTRICT',
- z=[1] * len(sub), colorscale=[[0, c], [1, c]],
- showscale=False, name=f'{cl} (n={len(sub)})',
- showlegend=True,
- hovertemplate='<b>%{location}</b><br>' + cl + '<extra></extra>',
- ))
- fig.update_geos(fitbounds='locations', visible=False)
- fig.update_layout(margin=dict(l=0, r=80, t=10, b=0), height=450,
- legend=dict(x=1.02, y=0.5, font=dict(size=9)))
- return fig
+  sub = dff[dff['BvLISA_cluster'] == cl]
+  if len(sub) == 0: continue
+  fig.add_trace(go.Choropleth(
+  geojson=geojson, locations=sub['DISTRICT'],
+  featureidkey='properties.DISTRICT',
+  z=[1] * len(sub), colorscale=[[0, c], [1, c]],
+  showscale=False, name=f'{cl} (n={len(sub)})',
+  showlegend=True,
+  hovertemplate='<b>%{location}</b><br>' + cl + '<extra></extra>',
+  ))
+  fig.update_geos(fitbounds='locations', visible=False)
+  fig.update_layout(margin=dict(l=0, r=80, t=10, b=0), height=450,
+  legend=dict(x=1.02, y=0.5, font=dict(size=9)))
+  return fig
 
 
 @app.callback(Output('risk-map', 'figure'), Input('region-select', 'value'))

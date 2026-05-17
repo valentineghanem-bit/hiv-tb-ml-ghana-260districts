@@ -11,7 +11,7 @@ FIG = ROOT / 'outputs' / 'figures'
 def b64(fname):
  path = FIG / fname
  with open(path, 'rb') as f:
- return base64.b64encode(f.read()).decode()
+  return base64.b64encode(f.read()).decode()
 
 html = f"""<!DOCTYPE html>
 <html lang="en">

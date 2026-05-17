@@ -74,8 +74,8 @@ ax = axes[0, 0]
 for cluster, color in lisa_cmap.items():
  sub = gdf[gdf['LISA_cluster'] == cluster]
  if len(sub) > 0:
- sub.plot(ax=ax, color=color, edgecolor='white', linewidth=0.2,
- label=f'{cluster} (n={len(sub)})')
+  sub.plot(ax=ax, color=color, edgecolor='white', linewidth=0.2,
+  label=f'{cluster} (n={len(sub)})')
 ax.set_title('A. LISA Cluster Map — TB-HIV Co-infection', **TITLE_KW)
 ax.legend(loc='lower left', fontsize=8, frameon=True)
 ax.axis('off')
@@ -85,8 +85,8 @@ ax = axes[0, 1]
 for cluster, color in lisa_cmap.items():
  sub = gdf[gdf['BvLISA_cluster'] == cluster]
  if len(sub) > 0:
- sub.plot(ax=ax, color=color, edgecolor='white', linewidth=0.2,
- label=f'{cluster} (n={len(sub)})')
+  sub.plot(ax=ax, color=color, edgecolor='white', linewidth=0.2,
+  label=f'{cluster} (n={len(sub)})')
 ax.set_title('B. Bivariate LISA — HIV × TB', **TITLE_KW)
 ax.legend(loc='lower left', fontsize=8, frameon=True)
 ax.axis('off')
@@ -99,8 +99,8 @@ gi_cmap = {'Hot Spot 99%': '#d73027', 'Hot Spot 95%': '#fc8d59', 'Hot Spot 90%':
 for cluster, color in gi_cmap.items():
  sub = gdf[gdf['Gi_cluster'] == cluster]
  if len(sub) > 0:
- sub.plot(ax=ax, color=color, edgecolor='white', linewidth=0.2,
- label=f'{cluster} (n={len(sub)})')
+  sub.plot(ax=ax, color=color, edgecolor='white', linewidth=0.2,
+  label=f'{cluster} (n={len(sub)})')
 ax.set_title('C. Getis-Ord Gi* Hotspots', **TITLE_KW)
 ax.legend(loc='lower left', fontsize=8, frameon=True)
 ax.axis('off')
@@ -358,20 +358,20 @@ gwr_vars = [c for c in gdf.columns if c.startswith('GWR_coef_')]
 if len(gwr_vars) >= 4:
  fig, axes = plt.subplots(2, 2, figsize=(15, 14))
  for ax, var in zip(axes.flat, gwr_vars[:4]):
- label = var.replace('GWR_coef_', '')
- label_pretty = LABEL_MAP.get(label, label)
- gdf.plot(column=var, cmap='RdBu_r', legend=True, ax=ax,
- edgecolor='white', linewidth=0.2,
- legend_kwds={'shrink': 0.6})
- ax.set_title(f'GWR β: {label_pretty}', **TITLE_KW)
- ax.axis('off')
- plt.tight_layout(rect=[0, 0.04, 1, 1])
- fig.text(0.5, 0.01,
- 'Figure 8. GWR local coefficients showing spatial non-stationarity in predictor effects on '
- 'TB-HIV co-infection prevalence.',
- **CAP_KW)
- plt.savefig(FIG / 'Figure_8_gwr_coefficients.png', dpi=300)
- plt.close()
+  label = var.replace('GWR_coef_', '')
+  label_pretty = LABEL_MAP.get(label, label)
+  gdf.plot(column=var, cmap='RdBu_r', legend=True, ax=ax,
+  edgecolor='white', linewidth=0.2,
+  legend_kwds={'shrink': 0.6})
+  ax.set_title(f'GWR β: {label_pretty}', **TITLE_KW)
+  ax.axis('off')
+  plt.tight_layout(rect=[0, 0.04, 1, 1])
+  fig.text(0.5, 0.01,
+  'Figure 8. GWR local coefficients showing spatial non-stationarity in predictor effects on '
+  'TB-HIV co-infection prevalence.',
+  **CAP_KW)
+  plt.savefig(FIG / 'Figure_8_gwr_coefficients.png', dpi=300)
+  plt.close()
 
 print('\n✓ All 8 figures saved at 300 DPI.')
 print(f' Location: {FIG}')

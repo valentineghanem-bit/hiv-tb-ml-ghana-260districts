@@ -128,8 +128,8 @@ def load_dhs(file, year_filter=None):
  df = pd.read_csv(BASE / file, low_memory=False, skiprows=[1])
  df['Value'] = pd.to_numeric(df['Value'], errors='coerce')
  if year_filter:
- df = df[df['SurveyYear'] == year_filter]
- return df
+  df = df[df['SurveyYear'] == year_filter]
+  return df
 
 knowledge = load_dhs('hiv-knowledge_subnational_gha.csv', 2003)
 behavior = load_dhs('hiv-behavior_subnational_gha.csv', 2003)
@@ -202,14 +202,14 @@ def latest_indicator(df, code, year=None, sex=None):
  sub['Numeric'] = pd.to_numeric(sub['Numeric'], errors='coerce')
  sub['YEAR (DISPLAY)'] = pd.to_numeric(sub['YEAR (DISPLAY)'], errors='coerce')
  if sex:
- sub = sub[sub['DIMENSION (CODE)'] == sex]
+  sub = sub[sub['DIMENSION (CODE)'] == sex]
  else:
- sub = sub[sub['DIMENSION (CODE)'].isna() | (sub['DIMENSION (CODE)'] == 'SEX_BTSX')]
- sub = sub.dropna(subset=['Numeric'])
+  sub = sub[sub['DIMENSION (CODE)'].isna() | (sub['DIMENSION (CODE)'] == 'SEX_BTSX')]
+  sub = sub.dropna(subset=['Numeric'])
  if year:
- sub = sub[sub['YEAR (DISPLAY)'] == year]
+  sub = sub[sub['YEAR (DISPLAY)'] == year]
  else:
- sub = sub.sort_values('YEAR (DISPLAY)', ascending=False).head(1)
+  sub = sub.sort_values('YEAR (DISPLAY)', ascending=False).head(1)
  return sub['Numeric'].iloc[0] if not sub.empty else np.nan
 
 hiv_nat = pd.read_csv(BASE / 'hiv_indicators_gha.csv', skiprows=[1])
@@ -264,7 +264,7 @@ for c in ['HIV_Prev_Women_pct', 'HIV_Prev_Men_pct', 'HIV_Prev_Total_pct',
  'HIV_Awareness_Women_pct', 'Condom_Use_pct', 'High_Risk_Sex_pct',
  'Ever_Tested_HIV_pct', 'Know_Where_Test_pct', 'Accepting_Attitudes_pct']:
  if c in df.columns and c in regional_means.index:
- df[c] = df[c].fillna(regional_means[c])
+  df[c] = df[c].fillna(regional_means[c])
 
 # Add national context columns (same value for all districts - baseline)
 for k, v in nat_vals.items():
@@ -403,12 +403,12 @@ if len(missing) > 0:
  # Simple join on district only
  fallback_cols = [c for c in df.columns if c not in ['Region_norm', 'District_norm']]
  for idx in missing.index:
- name = merged.loc[idx, 'DISTRICT_norm']
- match = df[df['District_norm'] == name]
- if not match.empty:
- for col in fallback_cols:
- if col in merged.columns and pd.isna(merged.loc[idx, col]):
- merged.loc[idx, col] = match.iloc[0][col]
+  name = merged.loc[idx, 'DISTRICT_norm']
+  match = df[df['District_norm'] == name]
+  if not match.empty:
+   for col in fallback_cols:
+    if col in merged.columns and pd.isna(merged.loc[idx, col]):
+     merged.loc[idx, col] = match.iloc[0][col]
 
 match_rate_final = merged['Total_Population'].notna().sum() / len(merged)
 print(f' → Final match rate: {match_rate_final*100:.1f}%')
@@ -417,10 +417,10 @@ print(f' → Final match rate: {match_rate_final*100:.1f}%')
 num_cols = merged.select_dtypes(include=[np.number]).columns
 for col in num_cols:
  if merged[col].isna().any():
- merged[col] = merged.groupby('REGION')[col].transform(
- lambda g: g.fillna(g.mean())
- )
- merged[col] = merged[col].fillna(merged[col].mean())
+  merged[col] = merged.groupby('REGION')[col].transform(
+  lambda g: g.fillna(g.mean())
+  )
+  merged[col] = merged[col].fillna(merged[col].mean())
 
 # Fill District/Region if missing
 merged['District'] = merged['District'].fillna(merged['DISTRICT'])
@@ -475,8 +475,8 @@ print(f'\nOutcome distributions:')
 for c in ['HIV_Prev_Total_pct', 'TB_Incidence_per100k', 'TB_HIV_CoInfection_pct',
  'ART_Coverage_pct', 'VCT_Uptake_pct']:
  if c in df_final.columns:
- print(f' {c}: mean={df_final[c].mean():.2f}, SD={df_final[c].std():.2f}, '
- f'min={df_final[c].min():.2f}, max={df_final[c].max():.2f}')
+  print(f' {c}: mean={df_final[c].mean():.2f}, SD={df_final[c].std():.2f}, '
+  f'min={df_final[c].min():.2f}, max={df_final[c].max():.2f}')
 
 print(f'\nHotspot districts (top-quartile co-infection): {df_final["HIV_TB_Hotspot"].sum()}/{len(df_final)}')
 print('\n✓ Master dataset build complete.')
