@@ -9,7 +9,7 @@ from pathlib import Path
 
 ROOT = Path('/sessions/lucid-confident-wozniak/hiv_tb_ghana')
 OUT = ROOT / 'outputs'
-gdf = gpd.read_file(OUT / 'data' / 'ghana_260_final_results.geojson')
+gdf = gpd.read_file(OUT / 'data' / 'ghana_261_final_results.geojson')
 
 # Simplify geometry for web performance
 gdf['geometry'] = gdf['geometry'].simplify(0.005, preserve_topology=True)

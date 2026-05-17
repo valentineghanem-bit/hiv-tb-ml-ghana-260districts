@@ -1,10 +1,10 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 type: software
-title: "Machine Learning Mapping of HIV-TB Co-infection across Ghana's 260 Districts"
+title: "Machine Learning Mapping of HIV-TB Co-infection across Ghana's 261 Districts"
 abstract: >
  Reproducible pipeline for spatial distribution, determinants, and ML-based risk
- prediction of HIV-TB co-infection across Ghana's 260 administrative districts.
+ prediction of HIV-TB co-infection across Ghana's 261 administrative districts.
  Methods: Univariate and bivariate Moran's I, LISA, Gi*, GWR, LightGBM ensemble,
  SHAP interpretability. LightGBM LODO-CV AUC=0.998; GWR R2=0.916;
  Moran's I=0.468 (univariate), 0.521 (bivariate).
@@ -23,7 +23,7 @@ keywords:
  - spatial epidemiology
  - machine learning
  - Ghana
- - 260 districts
+ - 261 districts
  - LightGBM
  - SHAP
  - GWR
@@ -31,7 +31,7 @@ keywords:
  - STROBE
 references:
  - type: article
- title: "Spatial distribution, determinants, and machine-learning-based risk prediction of HIV-TB co-infection across Ghana's 260 districts"
+ title: "Spatial distribution, determinants, and machine-learning-based risk prediction of HIV-TB co-infection across Ghana's 261 districts"
  authors:
  - family-names: Ghanem
  given-names: Valentine Golden

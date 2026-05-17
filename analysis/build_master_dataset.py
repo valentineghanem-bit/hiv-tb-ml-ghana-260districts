@@ -5,7 +5,7 @@ Master Dataset Builder
 Author: Valentine Golden Ghanem
 Date: April 2026
 
-This script merges all data sources to build the 260-district analytical dataset.
+This script merges all data sources to build the 261-district analytical dataset.
 """
 import pandas as pd
 import numpy as np
@@ -21,9 +21,9 @@ OUT = Path('/sessions/lucid-confident-wozniak/hiv_tb_ghana/outputs/data')
 OUT.mkdir(parents=True, exist_ok=True)
 
 # ============================================================
-# 1. LOAD BASE: Master Sheet (260 districts, socioeconomic)
+# 1. LOAD BASE: Master Sheet (261 districts, socioeconomic)
 # ============================================================
-print('[1/8] Loading Master Sheet (260 districts)...')
+print('[1/8] Loading Master Sheet (261 districts)...')
 master = pd.read_csv(BASE / 'Master Sheet.xlsx - Sheet1.csv')
 master.columns = [c.strip() for c in master.columns]
 master = master.rename(columns={
@@ -378,7 +378,7 @@ df['HIV_TB_Hotspot'] = (df['TB_HIV_CoInfection_pct'] >
 # 9. ADD SPATIAL GEOMETRY
 # ============================================================
 print('[8/8] Merging with spatial geometry...')
-gdf_geo = gpd.read_file(BASE / 'Ghana_New_260_District.geojson')
+gdf_geo = gpd.read_file(BASE / 'Ghana_New_261_District.geojson')
 gdf_geo['DISTRICT_norm'] = gdf_geo['DISTRICT'].str.upper().str.strip()
 gdf_geo['REGION_norm'] = gdf_geo['REGION'].str.upper().str.strip()
 

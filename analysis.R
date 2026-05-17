@@ -13,7 +13,7 @@ set.seed(42)
 cat("── Loading data ──────────────────────────────────────────────────────\n")
 df <- tryCatch(
   read_csv("outputs/data/Ghana_HIV_TB_Master_Dataset.csv", show_col_types = FALSE),
-  error = function(e) read_csv("outputs/data/ghana_260_final_results.csv",
+  error = function(e) read_csv("outputs/data/ghana_261_final_results.csv",
                                show_col_types = FALSE)
 )
 cat(sprintf("Loaded: %d districts × %d variables\n", nrow(df), ncol(df)))

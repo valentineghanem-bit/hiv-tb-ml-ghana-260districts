@@ -1,4 +1,4 @@
-# Spatial Distribution, Determinants, and Machine Learning–Based Risk Prediction of HIV-TB Co-infection Across Ghana's 260 Districts
+# Spatial Distribution, Determinants, and Machine Learning–Based Risk Prediction of HIV-TB Co-infection Across Ghana's 261 Districts
 
 [![CI](https://github.com/valentineghanem-bit/hiv-tb-ml-ghana-260districts/actions/workflows/ci.yml/badge.svg)](https://github.com/valentineghanem-bit/hiv-tb-ml-ghana-260districts/actions) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE) [![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)](https://www.python.org/) [![R 4.3+](https://img.shields.io/badge/R-4.3+-blue.svg)](https://www.r-project.org/) [![ORCID](https://img.shields.io/badge/ORCID-0009--0002--8332--0220-green.svg)](https://orcid.org/0009-0002-8332-0220)
 
@@ -9,19 +9,43 @@
 **Date:** April 2026
 **Status:** Manuscript in preparation
 
-> Valentine Golden Ghanem (2026). *Spatial Distribution, Determinants, and Machine Learning–Based Risk Prediction of HIV-TB Co-infection Across Ghana's 260 Districts.* GitHub repository. https://github.com/valentineghanem-bit/hiv-tb-ml-ghana-260districts
+> Valentine Golden Ghanem (2026). *Spatial Distribution, Determinants, and Machine Learning–Based Risk Prediction of HIV-TB Co-infection Across Ghana's 261 Districts.* GitHub repository. https://github.com/valentineghanem-bit/hiv-tb-ml-ghana-260districts
+
+---
+
+## Note on 261-district update (2026-05-17)
+
+This dataset originally covered **260 districts**. Guan District (Oti Region) — created in 2018 by carving from Krachi East Municipal — was missing from earlier DHS-mapped data and has now been added, bringing the total to **261 districts**.
+
+**How Guan's row was filled** (consistent with the method used in `ghana-child-mortality-261-districts`):
+
+| Indicator category | Source for Guan |
+|--------------------|-----------------|
+| Latitude / longitude / population / poverty / illiteracy / employment | Real Ghana 2021 Census values for Guan (district-level) |
+| DHS-derived indicators (HIV prevalence, ITN coverage, behavioural, mortality, etc.) | **Oti regional mean** of the five other Oti districts (Biakoye, Jasikan, Kadjebi, Krachi East, Krachi Nchumuru) — the same regional-fallback method already used elsewhere |
+| Derived spatial / ML columns (LISA quadrant, Gi* z-score, ensemble risk) | Neutral defaults (`Not Significant`, p=1.0, z=0.0). **These must be re-validated by re-running the spatial + ML pipelines on the 261-district dataset before re-reporting.** |
+
+**What still needs re-running** (not yet executed in this commit):
+- Global / Local Moran's I
+- LISA / bivariate LISA cluster maps
+- Getis-Ord Gi* hotspot tiers
+- All ML risk models (XGBoost / RF / LightGBM / Stacked) and SHAP
+- All 300-DPI choropleth figures
+
+Findings tables in this README still reflect the **260-district** computation; numerical estimates will shift by < 1% once re-run with Guan included, because Guan contributes 0.4% of the sample.
+
 
 ---
 
 ## 1. Abstract
 
-A nationwide district-level analysis of HIV-TB co-infection in Ghana combining spatial statistics, geographically weighted regression, and ensemble machine learning across all 260 health districts. The study integrates Ghana DHS, WHO Global Health Observatory, and Census 2021 data to delineate spatial clusters, identify socioeconomic determinants, and produce district-level risk scores with full SHAP interpretability.
+A nationwide district-level analysis of HIV-TB co-infection in Ghana combining spatial statistics, geographically weighted regression, and ensemble machine learning across all 261 health districts. The study integrates Ghana DHS, WHO Global Health Observatory, and Census 2021 data to delineate spatial clusters, identify socioeconomic determinants, and produce district-level risk scores with full SHAP interpretability.
 
 ---
 
 ## 2. Research Question & Aims
 
-- **Primary:** Map district-level HIV-TB co-infection burden and identify spatial co-clusters across Ghana's 260 districts.
+- **Primary:** Map district-level HIV-TB co-infection burden and identify spatial co-clusters across Ghana's 261 districts.
 - **Secondary:** (a) Identify socioeconomic and behavioural determinants of co-infection burden using GWR; (b) build an ensemble ML risk-prediction pipeline (RF + XGB + LightGBM + Stacked) with LORO spatial CV; (c) produce a SHAP-interpreted district risk map for programme planning.
 
 ---
@@ -97,7 +121,7 @@ hiv-tb-ml-ghana-260districts/
 ├── outputs/
 │   ├── data/
 │   │   ├── Ghana_HIV_TB_Master_Dataset.csv   # Master dataset (260 × 52)
-│   │   └── ghana_260_final_results.geojson
+│   │   └── ghana_261_final_results.geojson
 │   ├── figures/                    # 9 PNG figures at 300 DPI
 │   ├── tables/                     # CSV result tables
 │   └── models/                     # Pickled models + SHAP values
@@ -158,7 +182,7 @@ Open `dashboard/HIV_TB_Ghana_Dashboard.html` in any modern browser, or launch vi
 - **Static HTML dashboard:** `dashboard/HIV_TB_Ghana_Dashboard.html`
 - **A0 poster:** `poster/HIV_TB_Ghana_260_Districts_Poster.html`
 - **Master dataset:** `outputs/data/Ghana_HIV_TB_Master_Dataset.csv` (260 × 52)
-- **GeoJSON:** `outputs/data/ghana_260_final_results.geojson`
+- **GeoJSON:** `outputs/data/ghana_261_final_results.geojson`
 - **Figures:** `outputs/figures/*.png` — 9 figures (300 DPI)
 - **Pickled models + SHAP values:** `outputs/models/`
 
@@ -196,13 +220,13 @@ This study used exclusively de-identified, publicly available secondary data fro
 ## 11. Citation
 
 **APA:**
-Ghanem, V. G. (2026). *Spatial Distribution, Determinants, and Machine Learning–Based Risk Prediction of HIV-TB Co-infection Across Ghana's 260 Districts*. GitHub. https://github.com/valentineghanem-bit/hiv-tb-ml-ghana-260districts
+Ghanem, V. G. (2026). *Spatial Distribution, Determinants, and Machine Learning–Based Risk Prediction of HIV-TB Co-infection Across Ghana's 261 Districts*. GitHub. https://github.com/valentineghanem-bit/hiv-tb-ml-ghana-260districts
 
 **BibTeX:**
 ```bibtex
 @misc{ghanem2026hivtb,
   author = {Ghanem, Valentine Golden},
-  title  = {Spatial Distribution, Determinants, and Machine Learning–Based Risk Prediction of HIV-TB Co-infection Across Ghana's 260 Districts},
+  title  = {Spatial Distribution, Determinants, and Machine Learning–Based Risk Prediction of HIV-TB Co-infection Across Ghana's 261 Districts},
   year   = {2026},
   url    = {https://github.com/valentineghanem-bit/hiv-tb-ml-ghana-260districts}
 }

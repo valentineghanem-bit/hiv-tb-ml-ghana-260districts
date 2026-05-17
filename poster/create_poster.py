@@ -123,7 +123,7 @@ footer {{
 
 <header>
  <div class="title-block">
- <h1>Spatial Distribution, Determinants &amp; ML Risk Prediction of<br>HIV–TB Co-infection Across Ghana's 260 Districts</h1>
+ <h1>Spatial Distribution, Determinants &amp; ML Risk Prediction of<br>HIV–TB Co-infection Across Ghana's 261 Districts</h1>
  <h2>Bivariate LISA · Ensemble Machine Learning · SHAP Interpretability</h2>
  </div>
  <div class="authors">
@@ -139,7 +139,7 @@ footer {{
 
 <div class="box">
 <h3>Background</h3>
-<p>Tuberculosis remains the leading cause of death among people living with HIV globally, and co-infection amplifies transmission, treatment failure, and health-system cost in sub-Saharan Africa. Ghana reports 12–23% TB-HIV co-infection nationally, but <strong>district-level variation is poorly characterised</strong> across its 260 MMDAs despite decentralised health governance.</p>
+<p>Tuberculosis remains the leading cause of death among people living with HIV globally, and co-infection amplifies transmission, treatment failure, and health-system cost in sub-Saharan Africa. Ghana reports 12–23% TB-HIV co-infection nationally, but <strong>district-level variation is poorly characterised</strong> across its 261 MMDAs despite decentralised health governance.</p>
 <p>This study addresses four gaps: empirical (district-level co-infection), methodological (combined bivariate LISA + GWR + ensemble ML), theoretical (structural + behavioural + health-system integration), and translational (spatially-targeted GHS programming).</p>
 <div class="kpi">
  <div class="kpi-card"><div class="kpi-num">260</div><div class="kpi-lbl">Districts analysed</div></div>
@@ -152,7 +152,7 @@ footer {{
 <div class="box">
 <h3>Methods</h3>
 <ul>
- <li><strong>Data integration:</strong> DHS Ghana 2003 (regional HIV/behaviour/VCT/knowledge/attitudes), WHO GHO (national HIV, TB, health workforce, financing, STI), Ghana Statistical Service 2021 Census (260 MMDAs), Ghana 260-district shapefile.</li>
+ <li><strong>Data integration:</strong> DHS Ghana 2003 (regional HIV/behaviour/VCT/knowledge/attitudes), WHO GHO (national HIV, TB, health workforce, financing, STI), Ghana Statistical Service 2021 Census (261 MMDAs), Ghana 261-district shapefile.</li>
  <li><strong>Spatial statistics:</strong> Global Moran's I (KNN-5, 999 permutations), univariate &amp; bivariate LISA (Rook contiguity), Getis-Ord Gi* hotspots, OLS with LM diagnostics, Spatial Error Model (ML), Geographically Weighted Regression with adaptive AICc bandwidth.</li>
  <li><strong>Machine learning:</strong> Random Forest, XGBoost, LightGBM, Stacked Ensemble with logistic meta-learner. SMOTE oversampling on training fold only. 10-fold stratified CV + leave-one-region-out spatial CV. SHAP TreeExplainer for interpretability.</li>
  <li><strong>Reporting:</strong> STROBE observational-study guideline.</li>
@@ -238,7 +238,7 @@ footer {{
  <div class="foot-mid">
  <h4 style="color:#fbd38d; font-size:20pt; margin-bottom:4mm;">Data &amp; Reproducibility</h4>
  <ul>
- <li>260-district GeoJSON + Master CSV released (MIT)</li>
+ <li>261-district GeoJSON + Master CSV released (MIT)</li>
  <li>Python 3.11 · libpysal · mgwr · xgboost · shap</li>
  <li>All scripts, Docker, CI/CD on GitHub</li>
  </ul>

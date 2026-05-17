@@ -33,7 +33,7 @@ plt.rcParams.update({
 TITLE_KW = dict(fontsize=13, fontweight='bold', color='#000', pad=12)
 CAP_KW = dict(ha='center', fontsize=12, style='italic', color='#333333')
 
-gdf = gpd.read_file(OUT / 'data' / 'ghana_260_final_results.geojson')
+gdf = gpd.read_file(OUT / 'data' / 'ghana_261_final_results.geojson')
 print(f'Loaded: {len(gdf)} districts')
 
 # ============================================================
@@ -55,7 +55,7 @@ for ax, (var, title, cmap) in zip(axes.flat, panels):
 plt.tight_layout(rect=[0, 0.04, 1, 1])
 fig.text(0.5, 0.01,
  'Figure 1. Spatial distribution of HIV prevalence, TB incidence, TB-HIV co-infection, '
- 'and ART coverage across 260 districts in Ghana.',
+ 'and ART coverage across 261 districts in Ghana.',
  **CAP_KW)
 plt.savefig(FIG / 'Figure_1_disease_burden.png', dpi=300)
 plt.close()

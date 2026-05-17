@@ -14,7 +14,7 @@ import geopandas as gpd
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA = ROOT / 'outputs' / 'data' / 'ghana_260_final_results.geojson'
+DATA = ROOT / 'outputs' / 'data' / 'ghana_261_final_results.geojson'
 SHAP_FILE = ROOT / 'outputs' / 'tables' / 'shap_feature_importance.csv'
 
 print('Loading data...')

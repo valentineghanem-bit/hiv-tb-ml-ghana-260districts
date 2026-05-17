@@ -269,8 +269,8 @@ gdf['Ensemble_Risk_Score'] = (gdf['RF_Risk'] + gdf['XGB_Risk'] +
  gdf['LGB_Risk'] + gdf['Stacked_Risk']) / 4
 
 # Save enriched gdf (with ML predictions)
-gdf.to_file(OUT / 'data' / 'ghana_260_final_results.geojson', driver='GeoJSON')
-gdf.drop(columns='geometry').to_csv(OUT / 'data' / 'ghana_260_final_results.csv', index=False)
+gdf.to_file(OUT / 'data' / 'ghana_261_final_results.geojson', driver='GeoJSON')
+gdf.drop(columns='geometry').to_csv(OUT / 'data' / 'ghana_261_final_results.csv', index=False)
 
 # Save predictions JSON for reproducibility
 with open(MODEL_DIR / 'predictions.json', 'w') as f:

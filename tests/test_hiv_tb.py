@@ -23,7 +23,7 @@ SHAP_CSV = os.path.join(REPO_ROOT, "outputs", "tables", "shap_feature_importance
 FIG_DIR = os.path.join(REPO_ROOT, "outputs", "figures")
 
 # CANONICAL VALUES (QA-verified 2026-04-30)
-N_DISTRICTS = 260
+N_DISTRICTS = 261
 POPULATION = 28_140_000 # ~28.14 million
 MORANS_I_COINFECTION = 0.468 # Univariate, TB-HIV co-infection
 BIVARIATE_MORANS_I = 0.521 # Bivariate, HIV x TB
@@ -45,7 +45,7 @@ class TestMasterDataset:
  """Master dataset structural integrity (260 x 52)."""
 
  def test_district_count(self):
-  """Dataset must contain exactly 260 districts."""
+  """Dataset must contain exactly 261 districts."""
   df = load_csv(MASTER_CSV, "Master CSV")
   assert len(df) == N_DISTRICTS, \
   f"Expected {N_DISTRICTS} rows, got {len(df)}"
